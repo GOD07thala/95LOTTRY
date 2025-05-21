@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Refer Bot Creator Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #357ABD;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #f0f4fb;
+    }
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+    .balance {
+      background: #e7f4e4;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #2d6a2d;
+    }
+  </style>
+</head>
+<body>
+
+<header>Refer Bot Creator Dashboard</header>
+
+<div class="container">
+
+  <section id="welcome">
+    <h2>Welcome, User123!</h2>
+    <p>Create and manage your Telegram business bots easily.</p>
+  </section>
+
+  <section id="create-bot">
+    <h2>Create New Bot</h2>
+    <input type="text" id="botToken" placeholder="Enter BotFather Token" style="width: 100%; padding: 8px; font-size: 1rem;" />
+    <button onclick="createBot()">Create Bot</button>
+    <p id="createBotMsg" style="color: green; margin-top: 10px;"></p>
+  </section>
+
+  <section id="my-bots">
+    <h2>My Bots</h2>
+    <table>
+      <thead>
+        <tr><th>Bot Username</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="botsList">
+        <!-- Dynamic bots list here -->
+        <tr>
+          <td>@MyFirstBot</td>
+          <td>Active</td>
+          <td>
+            <button class="btn-small" onclick="manageBot('@MyFirstBot')">Manage</button>
+            <button class="btn-small" onclick="deleteBot('@MyFirstBot')">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>@MySecondBot</td>
+          <td>Inactive</td>
+          <td>
+            <button class="btn-small" onclick="manageBot('@MySecondBot')">Manage</button>
+            <button class="btn-small" onclick="deleteBot('@MySecondBot')">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="statistics" style="margin-top: 30px;">
+    <h2>Platform Statistics</h2>
+    <p>Total Bots Created: <strong>132</strong></p>
+    <p>Total Active Users: <strong>4,876</strong></p>
+    <p>Total Admin Earnings: <strong>₹5,420</strong></p>
+  </section>
+
+  <section id="my-earnings" style="margin-top: 30px;">
+    <h2>My Earnings</h2>
+    <div class="balance">
+      Total Earned: ₹1,560<br />
+      Withdrawn: ₹900<br />
+      Available: ₹660
+    </div>
+    <button onclick="withdrawEarnings()">Withdraw Earnings</button>
+  </section>
+
+</div>
+
+<script>
+  function createBot() {
+    const token = document.getElementById('botToken').value.trim();
+    const msg = document.getElementById('createBotMsg');
+    if(!token) {
+      msg.style.color = 'red';
+      msg.textContent = 'Please enter a valid bot token.';
+      return;
+    }
+    // Simulate API call to create bot
+    msg.style.color = 'green';
+    msg.textContent = 'Bot created successfully! (@YourBotUsername)';
+    // Reset input
+    document.getElementById('botToken').value = '';
+  }
+
+  function manageBot(botUsername) {
+    alert(`Manage bot: ${botUsername}\n(Admin panel to be implemented)`);
+  }
+
+  function deleteBot(botUsername) {
+    if(confirm(`Are you sure you want to delete ${botUsername}?`)) {
+      alert(`${botUsername} deleted.`);
+      // Implement delete logic here
+    }
+  }
+
+  function withdrawEarnings() {
+    let upi = prompt("Enter your UPI ID to withdraw ₹660:");
+    if(upi) {
+      alert(`Withdrawal request sent for ₹660 to UPI ID: ${upi}`);
+      // Implement withdrawal request logic here
+    }
+  }
+</script>
+
+</body>
+</html>
